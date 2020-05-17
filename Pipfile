@@ -5,11 +5,12 @@ verify_ssl = true
 
 [dev-packages]
 commitizen = "*"
+pylint = "*"
+pylint-django = "*"
 
 [packages]
 django = "*"
 djangorestframework = "*"
-commitizen = "*"
 
 [requires]
 python_version = "3.6"

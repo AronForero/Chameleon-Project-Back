@@ -8,7 +8,8 @@ This if the backend of the chameleon project, based on Python (django+djangorest
 * Install in your machine the pipenv package
 * execute the following line in the terminal
 ~~~
-pipenv install
+pipenv update
+pipenv install --dev
 ~~~
    
 And there you are, the project is installed.
