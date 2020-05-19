@@ -31,6 +31,10 @@ class UserStatus(TimeStampsMixin, SoftDeleteMixin):
         max_length=200,
     )
 
+    def __str__(self):
+        return '{}: {}'.format(self.status, self.description)
+    
+
 
 class Role(TimeStampsMixin, SoftDeleteMixin):
     """ Roles that can have the users """
@@ -43,6 +47,9 @@ class Role(TimeStampsMixin, SoftDeleteMixin):
         'Description of the User role',
         max_length=200,
     )
+
+    def __str__(self):
+        return '{}: {}'.format(self.nombre, self.description)
 
 
 class UserInfo(TimeStampsMixin, SoftDeleteMixin):
@@ -79,3 +86,7 @@ class UserInfo(TimeStampsMixin, SoftDeleteMixin):
         UserStatus,
         on_delete=models.CASCADE,
     )
+
+    def __str__(self):
+        return '{} {}, Email: {}, Edad: {}, Rol: {}, Estado: {}'.format(self.name, self.last_name, self.email, self.age, self.role, self.status)
+    
