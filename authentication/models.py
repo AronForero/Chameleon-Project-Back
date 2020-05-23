@@ -49,7 +49,7 @@ class Role(TimeStampsMixin, SoftDeleteMixin):
     )
 
     def __str__(self):
-        return '{}: {}'.format(self.nombre, self.description)
+        return '{}: {}'.format(self.name, self.description)
 
 
 class UserInfo(TimeStampsMixin, SoftDeleteMixin):
@@ -90,3 +90,37 @@ class UserInfo(TimeStampsMixin, SoftDeleteMixin):
     def __str__(self):
         return '{} {}, Email: {}, Edad: {}, Rol: {}, Estado: {}'.format(self.name, self.last_name, self.email, self.age, self.role, self.status)
     
+class Topic(TimeStampsMixin, SoftDeleteMixin):
+    """ Topic of the forum """
+    name = models.CharField(
+        'Name of the topic',
+        max_length = 45,
+    )
+
+    description = models.CharField(
+        'Description of the topic',
+        max_length = 45,
+    )
+
+    def __str__(self):
+        return '{}: {}'.format(self.name, self.description)
+
+class State(TimeStampsMixin, SoftDeleteMixin):
+    """State of the state"""
+    name = models.CharField(
+        'Name of the state',
+        max_length = 45,
+    )
+
+    description = models.CharField(
+        'Description of the state',
+        max_length = 45,
+    )
+    
+    def __str__(self):
+        return '{}: {}'.format(self.name, self.description)
+
+
+
+
+
