@@ -6,8 +6,8 @@ from rest_framework import status, viewsets
 from rest_framework.response import Response
 from rest_framework.permissions import AllowAny, IsAuthenticated
 
-from .models import Topic,State
-from .serializers import TopicSerializer, StateSerializer
+from .models import Topic,State, Replies
+from .serializers import TopicSerializer, StateSerializer, RepliesSerializer
 
 # Create your views here.
 
@@ -28,3 +28,11 @@ class StateViewSet(viewsets.ModelViewSet):
     permission_classes = (IsAuthenticated,)
     queryset = State.objects.filter(trashed=False)
     serializer_class = StateSerializer
+
+class RepliesViewSet(viewsets.ModelViewSet):
+    """
+    This class will handle all the logic for the Replies
+    """
+     permission_classes = (IsAuthenticated,)
+    queryset = Replies.objects.filter(trashed=False)
+    serializer_class = RepliesSerializer
