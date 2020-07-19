@@ -79,3 +79,27 @@ class UserInfoViewSet(viewsets.ModelViewSet):
     permission_classes = (IsAuthenticated,)
     queryset = UserInfo.objects.filter(trashed=False)
     serializer_class = UserInfoSerializer
+
+class TopicViewSet(viewsets.ModelViewSet):
+    """
+    Handles the logic (CRUD) for the Post Topics
+    """
+    permission_classes = (IsAuthenticated,)
+    queryset = Role.objects.filter(trashed=False)
+    serializer_class = TopicSerializer
+
+class StateViewSet(viewsets.ModelViewSet):
+    """
+    Handles the logic (CRUD) for the Post States
+    """
+    permission_classes = (IsAuthenticated,)
+    queryset = Role.objects.filter(trashed=False)
+    serializer_class = StateSerializer
+
+class PostViewSet(viewsets.ModelViewSet):
+    """
+    CRUD for the Post
+    """
+    permission_classes = (IsAuthenticated,)
+    queryset = UserInfo.objects.filter(trashed=False)
+    serializer_class = PostSerializer

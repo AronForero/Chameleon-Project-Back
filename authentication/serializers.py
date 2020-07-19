@@ -37,3 +37,24 @@ class UserInfoSerializer(serializers.ModelSerializer):
     class Meta:
         model = UserInfo
         exclude = ['created_at', 'updated_at', 'trashed', 'trashed_at']
+
+class TopicSerializer(serializers.ModelSerializer):
+
+    class Meta:
+        model = Topic
+        exclude = ['created_at', 'updated_at', 'trashed', 'trashed_at']
+
+class StateSerializer(serializers.ModelSerializer):
+
+    class Meta:
+        model = State
+        exclude = ['created_at', 'updated_at', 'trashed', 'trashed_at']
+
+class PostSerializer(serializers.ModelSerializer):
+    UserInfo = UserInfoSerializer()
+    State = StateSerializer()
+    Topic = TopicSerializer()
+
+    class Meta:
+        model = Post
+        exclude = ['created_at', 'updated_at', 'trashed', 'trashed_at']

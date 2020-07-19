@@ -38,7 +38,7 @@ class UserStatus(TimeStampsMixin, SoftDeleteMixin):
 
 class Role(TimeStampsMixin, SoftDeleteMixin):
     """ Roles that can have the users """
-    nombre = models.CharField(
+    name = models.CharField(
         'Role of the User',
         max_length = 20,
     )
@@ -89,3 +89,69 @@ class UserInfo(TimeStampsMixin, SoftDeleteMixin):
 
     def __str__(self):
         return '{} {}, Email: {}, Edad: {}, Rol: {}, Estado: {}'.format(self.name, self.last_name, self.email, self.age, self.role, self.status)
+
+
+class Topic(TimeStampsMixin, SoftDeleteMixin):
+    """ Post topics """
+    name = models.CharField(
+        'Name of the Post topic',
+        max_length = 45,
+    )
+
+    description = models.CharField(
+        'Description of the Post topic',
+        max_length=45,
+    )
+
+    def __str__(self):
+        return '{}: {}'.format(self.name, self.description)
+
+
+class State(TimeStampsMixin, SoftDeleteMixin):
+    """ Post State """
+    name = models.CharField(
+        'Name of the Post State',
+        max_length = 45,
+    )
+
+    description = models.CharField(
+        'Description of the Post State',
+        max_length=45,
+    )
+
+    def __str__(self):
+        return '{}: {}'.format(self.name, self.description)
+
+
+class Post(TimeStampsMixin, SoftDeleteMixin):
+    """ Post information """
+
+    message = models.TextField()
+
+    stars = models.IntegerField()
+    
+    duplicated = models.BinaryField()
+
+    created_by = models.ForeignKey(
+        UserInfo,
+        on_delete=models.CASCADE,
+    ) 
+
+    topic = models.ForeignKey(
+        Topic,
+        on_delete=models.CASCADE,
+    ) 
+
+    state = models.ForeignKey(
+        State,
+        on_delete=models.CASCADE,
+    ) 
+
+    duplicated_id = models.ForeignKey(
+        self,
+        on_delete=models.CASCADE,
+    ) 
+
+
+    def __str__(self):
+        return 'Mensaje: {}, Creado por: {}, Topic: {}, Estado: {}'.format(self.message, self.created_by, self.topic, self.estate)
