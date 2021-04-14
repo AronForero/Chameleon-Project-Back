@@ -51,9 +51,13 @@ class StateSerializer(serializers.ModelSerializer):
         exclude = ['created_at', 'updated_at', 'trashed', 'trashed_at']
 
 class PostSerializer(serializers.ModelSerializer):
-    UserInfo = UserInfoSerializer()
-    State = StateSerializer()
-    Topic = TopicSerializer()
+    message = serializers.CharField(required=True, allow_blank=False, allow_null=False)
+    stars = serializers.IntegerField(required=False, allow_blank=False, allow_null=False)
+    duplicated = serializers.BinaryField(required=True)
+    created_by = serializers.UserInfoSerializer(required=True)
+    topic = serializers.TopicSerializer(required=True, allow_blank=False, allow_null=False)
+    state = serializers.StateSerializer(required=True, allow_blank=False, allow_null=False)
+    duplicated_id = serializers.PrimaryKeyRelatedField(allow_null=True)
 
     class Meta:
         model = Post
